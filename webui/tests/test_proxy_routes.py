@@ -59,8 +59,6 @@ def test_proxy_rotate_calls_pipeline_helper(client, tmp_path, monkeypatch):
     _login(client)
     _write_pay_cfg(monkeypatch, tmp_path, {"enabled": True, "api_key": "fake"})
 
-    import sys
-    sys.path.insert(0, "/home/kali/gpt-mitm-public")
     import pipeline as pl
 
     fake_px = {
@@ -87,8 +85,7 @@ def test_proxy_rotate_calls_pipeline_helper(client, tmp_path, monkeypatch):
 
 def test_rotate_webshare_ip_cooldown_returns_cached(monkeypatch):
     """冷却内重复调 _rotate_webshare_ip 直接返回上次结果，不查 Webshare API。"""
-    import sys, time
-    sys.path.insert(0, "/home/kali/gpt-mitm-public")
+    import time
     import pipeline as pl
 
     cached = {"proxy_address": "1.1.1.1", "port": 1, "country_code": "ID",
@@ -110,8 +107,7 @@ def test_rotate_webshare_ip_cooldown_returns_cached(monkeypatch):
 
 def test_rotate_webshare_ip_force_bypasses_cooldown(monkeypatch):
     """force=True 跳过冷却，仍触发完整 refresh 流程。"""
-    import sys, time
-    sys.path.insert(0, "/home/kali/gpt-mitm-public")
+    import time
     import pipeline as pl
 
     cached = {"proxy_address": "1.1.1.1", "port": 1, "valid": True,
@@ -145,8 +141,6 @@ def test_proxy_rotate_returns_402_on_quota_exhausted(client, tmp_path, monkeypat
     _login(client)
     _write_pay_cfg(monkeypatch, tmp_path, {"enabled": True, "api_key": "fake"})
 
-    import sys
-    sys.path.insert(0, "/home/kali/gpt-mitm-public")
     import pipeline as pl
 
     def boom(*a, **kw):

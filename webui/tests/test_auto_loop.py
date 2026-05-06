@@ -16,7 +16,7 @@ def test_auto_loop_classify_kinds(client):
         ],
         "cf_429": ["[ERROR] GoPayError: midtrans linking unexpected status=429 body="],
         "otp_validate_400": [
-            "  File \"/home/kali/gpt-mitm-public/CTF-pay/gopay.py\", line 488, in _gopay_validate_otp",
+            '  File "CTF-pay/gopay.py", line 488, in _gopay_validate_otp',
             "    r.raise_for_status()",
             "curl_cffi.requests.exceptions.HTTPError: HTTP Error 400:",
         ],
